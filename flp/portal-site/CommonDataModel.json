@@ -1,0 +1,109 @@
+{
+	"_version": "3.0.0",
+	"identification": {
+		"id": "f99bcf0f-62dc-4b44-8dd6-cb376763a820-1586894234768",
+		"entityType": "bundle"
+	},
+	"payload": {
+		"catalogs": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "TransactionAppsCatalog",
+				"title": "{{TransactionApps}}",
+				"entityType": "catalog",
+				"i18n": "i18n/default.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "myportal.createsalesorder",
+					"vizId": "Salesorder-create"
+				}, {
+					"id": "myportal.createinvoice",
+					"vizId": "Invoice-create"
+				}]
+			}
+		}, {
+			"_version": "3.0.0",
+			"identification": {
+				"id": "ReportsCatalog",
+				"title": "{{Reports}}",
+				"entityType": "catalog",
+				"i18n": "i18n/default.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "myportal.salesorderreport",
+					"vizId": "Salesorder-report"
+				}]
+			}
+		}],
+		"groups": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "defaultGroupId",
+				"title": "{{title}}",
+				"entityType": "group",
+				"i18n": "i18n/defaultGroupId.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "myportal.createsalesorder-0-1586894681698",
+					"appId": "myportal.createsalesorder",
+					"vizId": "Salesorder-create"
+				}, {
+					"id": "myportal.salesorderreport-1-1586894681698",
+					"appId": "myportal.salesorderreport",
+					"vizId": "Salesorder-report"
+				}]
+			}
+		}, {
+			"_version": "3.0.0",
+			"identification": {
+				"id": "invoice",
+				"title": "{{title}}",
+				"entityType": "group",
+				"i18n": "i18n/invoice.properties"
+			},
+			"payload": {
+				"viz": [{
+					"id": "myportal.createinvoice-0-1586894681698",
+					"appId": "myportal.createinvoice",
+					"vizId": "Invoice-create"
+				}]
+			}
+		}],
+		"sites": [{
+			"_version": "3.0.0",
+			"identification": {
+				"id": "97a08cbe-06a4-4f2c-ac84-bee07c8616ad-1586894234768",
+				"entityType": "site",
+				"title": "SAP Fiori launchpad site on Cloud Foundry",
+				"description": "SAP Fiori launchpad site on Cloud Foundry, deployed from SAP Web IDE"
+			},
+			"payload": {
+				"config": {
+					"ushellConfig": {
+						"renderers": {
+							"fiori2": {
+								"componentData": {
+									"config": {
+										"applications": {
+											"Shell-home": {}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"groupsOrder": ["defaultGroupId", "invoice"],
+				"sap.cloud.portal": {
+					"config": {
+						"theme.id": "sap_fiori_3",
+						"theme.active": ["sap_fiori_3", "sap_fiori_3_dark", "sap_belize_hcb", "sap_belize_hcw"]
+					}
+				}
+			}
+		}]
+	}
+}

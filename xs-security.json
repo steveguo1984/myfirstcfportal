@@ -1,0 +1,33 @@
+{
+  "xsappname": "MyPortal",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [ 
+	{"name": "$XSAPPNAME.createsalesorder", "description": "Create Sales Order" },
+	{"name": "$XSAPPNAME.createinvoice", "description": "Create Invoice" },
+	{"name": "$XSAPPNAME.salesorderreport", "description": "Sales Order Report" }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "TransactionApps",
+      "description": "Transactional Apps",
+      "scope-references": [
+        "$XSAPPNAME.createsalesorder","$XSAPPNAME.createinvoice"
+      ]
+    },
+    {
+      "name": "Reporting",
+      "description": "Reporting",
+      "scope-references": [
+        "$XSAPPNAME.salesorderreport"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+ID: MyPortal
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: myportal-approuter
+    type: approuter.nodejs
+    path: myportal-approuter
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: MyPortal_html5_repo_runtime
+      - name: uaa_MyPortal
+      - name: portal_resources_MyPortal
+  - name: MyPortal_ui_deployer
+    type: com.sap.html5.application-content
+    path: MyPortal_ui_deployer
+    requires:
+      - name: MyPortal_html5_repo_host
+    build-parameters:
+      requires:
+        - name: createsalesorder
+          artifacts:
+            - './*'
+          target-path: resources/createsalesorder
+        - name: salesorderreport
+          artifacts:
+            - './*'
+          target-path: resources/salesorderreport
+        - name: createinvoice
+          artifacts:
+            - './*'
+          target-path: resources/createinvoice
+  - name: createsalesorder
+    type: html5
+    path: createsalesorder
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: salesorderreport
+    type: html5
+    path: salesorderreport
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: createinvoice
+    type: html5
+    path: createinvoice
+    build-parameters:
+      builder: custom
+      commands:
+        - npm install
+        - npm run build
+      supported-platforms: []
+      build-result: dist
+  - name: flp
+    type: com.sap.portal.content
+    path: flp
+    parameters:
+      stack: cflinuxfs3
+      memory: 128M
+      buildpack: 'https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.6.39/nodejs-buildpack-cflinuxfs3-v1.6.39.zip'
+    requires:
+      - name: portal_resources_MyPortal
+      - name: uaa_MyPortal
+      - name: MyPortal_html5_repo_host
+      - name: MyPortal_ui_deployer
+resources:
+  - name: MyPortal_html5_repo_runtime
+    parameters:
+      service-plan: app-runtime
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: MyPortal_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service
+  - name: uaa_MyPortal
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_MyPortal
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
+  - name: portal_resources_MyPortal
+    parameters:
+      service-plan: standard
+      service: portal
+    type: org.cloudfoundry.managed-service
