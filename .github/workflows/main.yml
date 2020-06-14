@@ -1,0 +1,20 @@
+name: Deploy MTA Package
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy MTA Package
+      timeout-minutes: 40
+      uses: ./.github/actions/deploy_mta
+      if: contains(github.ref,'master')
+      with:
+        user: learnscpportalcf@gmail.com
+        password: Jiajiaslove520
+        host: https://api.cf.eu10.hana.ondemand.com
+        org: 5c1f5ebdtrial
+        space: dev

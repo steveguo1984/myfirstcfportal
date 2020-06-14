@@ -1,0 +1,21 @@
+name: "Deploy MTA Package"
+description: "Deploy MTA Package"
+inputs:
+  user:
+    description: User Name
+    required: true
+  password:
+    description: Password
+    required: true
+  host:
+    description: Host
+    required: true
+  org:
+    description: Orgnization
+    required: true
+  space: 
+    description: Space
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
