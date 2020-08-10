@@ -7,4 +7,5 @@ npm config set @sap:registry https://npm.sap.com
 mbt build -p=cf -t=../ --mtar=myportal.mtar 
 
 echo 'Deploy'
+cf install-plugin multiapps -f
 cf deploy ../myportal.mtar -f 
