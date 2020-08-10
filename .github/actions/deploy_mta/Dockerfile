@@ -13,7 +13,7 @@ run apt-get update -qq
 run apt-get install cf-cli -qq
 run npm config set @sap:registry https://npm.sap.com -g
 run npm install -g mbt --unsafe-perm=true --allow-root
-run cf install-plugin multiapps -f
+run cf install-plugin multiapps
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
