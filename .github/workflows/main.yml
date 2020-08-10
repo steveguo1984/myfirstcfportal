@@ -16,5 +16,5 @@ jobs:
         user: learnscpportalcf@gmail.com
         password: Jiajiaslove520
         host: https://api.cf.eu10.hana.ondemand.com
-        org: 5c1f5ebdtrial
+        org: ce13ab65trial
         space: dev
